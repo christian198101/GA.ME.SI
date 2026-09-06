@@ -24,7 +24,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.12); /* más claro */
+      background: rgba(0,0,0,0.12);
       z-index: -1;
     }
 
@@ -151,7 +151,7 @@
       padding: 15px;
     }
 
-    .acordeon-contenido .fila-botones {
+    .fila-botones {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -200,10 +200,21 @@
        MÓVILES
     ------------------------------ */
     @media (max-width: 768px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        padding: 10px 5px;
+      }
+
       h1 {
-        font-size: 55px;
-        letter-spacing: 4px;
-        margin-top: -20px;
+        font-size: 48px;
+        margin-top: -10px;
       }
 
       h2 {
@@ -211,17 +222,12 @@
       }
 
       .btn, .btn-wsp {
-        width: 90%;
+        width: 95%;
         font-size: 16px;
       }
 
-      .container {
-        padding: 15px;
-        margin-top: 10px;
-      }
-
       .foto-container img {
-        max-width: 90%;
+        max-width: 95%;
       }
     }
   </style>
@@ -234,9 +240,20 @@
     <source src="audio/musica.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- BOTÓN PARA ACTIVAR MÚSICA EN MÓVILES -->
+  <button class="btn" id="activar-sonido">Activar música 🎵</button>
+
   <script>
+    const musica = document.getElementById("musica-fondo");
+    const activarSonido = document.getElementById("activar-sonido");
+
+    activarSonido.addEventListener("click", () => {
+      musica.muted = false;
+      musica.play();
+    });
+
+    /* En escritorio se activa solo */
     window.addEventListener("DOMContentLoaded", () => {
-      const musica = document.getElementById("musica-fondo");
       setTimeout(() => {
         musica.muted = false;
       }, 1000);
