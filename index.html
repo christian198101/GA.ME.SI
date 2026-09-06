@@ -141,9 +141,6 @@
       color: #ffd27f;
     }
 
-    /* ------------------------------
-       BOTONES HORIZONTALES
-    ------------------------------ */
     .acordeon-contenido {
       max-height: 0;
       overflow: hidden;
@@ -197,10 +194,12 @@
     }
 
     /* ------------------------------
-       MÓVILES
+       MÓVILES (CON IMAGEN ESPECIAL)
     ------------------------------ */
     @media (max-width: 768px) {
       body {
+        background: url("img/fondo-pastas-mobile.jpg") no-repeat center center;
+        background-size: cover;
         background-attachment: scroll;
       }
 
@@ -252,7 +251,6 @@
       musica.play();
     });
 
-    /* En escritorio se activa solo */
     window.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         musica.muted = false;
@@ -368,7 +366,6 @@
 
 </body>
 </html>
-
 
 
 
