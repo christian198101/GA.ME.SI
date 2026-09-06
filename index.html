@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>GA.ME.SI - Pastas Caseras</title>
+
+  <!-- FUENTE ITALIANA -->
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+
+  <style>
+    /* ------------------------------
+       ESTILO GENERAL
+    ------------------------------ */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #f5f5f5;
+      background: url("img/fondo-pastas.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Overlay más claro y SIN DESENFOQUE */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.12); /* más claro */
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      background: rgba(0,0,0,0.45);
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.55);
+    }
+
+    h1 {
+      font-family: "Italianno", cursive;
+      font-size: 80px;
+      color: #E6C75A;
+      letter-spacing: 6px;
+      margin-top: -40px;
+      margin-bottom: 5px;
+      text-shadow:
+        0 0 10px rgba(0,0,0,0.8),
+        -2px -2px 5px rgba(255,255,255,0.25),
+        5px 5px 0px rgba(0,0,0,0.6),
+        10px 10px 18px rgba(0,0,0,0.85),
+        -5px -5px 10px rgba(255,230,160,0.65),
+        0 0 22px rgba(255,215,100,0.7),
+        0 0 35px rgba(255,215,100,0.6);
+    }
+
+    h2 {
+      margin-top: 5px;
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      color: #f5f5f5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    /* ------------------------------
+       BOTONES
+    ------------------------------ */
+    .btn,
+    .btn-wsp {
+      background: linear-gradient(135deg, #8b5a2b, #5c3a1e);
+      color: #f5f5f5;
+      border: 2px solid #3a2412;
+      padding: 14px 28px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: -5px;
+      background-image: url('img/textura-madera.jpg');
+      background-size: cover;
+      background-blend-mode: multiply;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after,
+    .btn-wsp::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: .6s;
+    }
+
+    .btn:hover::after,
+    .btn-wsp:hover::after {
+      left: 100%;
+    }
+
+    /* ------------------------------
+       ACORDEÓN MODERNO
+    ------------------------------ */
+    .acordeon {
+      background: rgba(0,0,0,0.55);
+      border-radius: 10px;
+      margin-top: 20px;
+      padding: 10px;
+      animation: fadeIn .6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .acordeon-item {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .acordeon-titulo {
+      padding: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.4);
+      transition: .3s;
+      text-align: left;
+    }
+
+    .acordeon-titulo:hover {
+      background: rgba(255,255,255,0.1);
+      color: #ffd27f;
+    }
+
+    /* ------------------------------
+       BOTONES HORIZONTALES
+    ------------------------------ */
+    .acordeon-contenido {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease;
+      padding: 15px;
+    }
+
+    .acordeon-contenido .fila-botones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .acordeon-contenido button {
+      padding: 12px 18px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: #f5f5f5;
+      font-size: 18px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .acordeon-contenido button:hover {
+      color: #ffd27f;
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ------------------------------
+       FOTO
+    ------------------------------ */
+    .foto-container img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .foto-container img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.8);
+    }
+
+    .foto-container p {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    /* ------------------------------
+       MÓVILES
+    ------------------------------ */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 55px;
+        letter-spacing: 4px;
+        margin-top: -20px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      .btn, .btn-wsp {
+        width: 90%;
+        font-size: 16px;
+      }
+
+      .container {
+        padding: 15px;
+        margin-top: 10px;
+      }
+
+      .foto-container img {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- MÚSICA DE FONDO -->
+  <audio id="musica-fondo" autoplay loop muted>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const musica = document.getElementById("musica-fondo");
+      setTimeout(() => {
+        musica.muted = false;
+      }, 1000);
+    });
+  </script>
+
+  <div class="container">
+    <h1>GA.ME.SI</h1>
+    <h2>Boutique de Pastas Gourmet.</h2>
+
+    <button class="btn" id="btn-especialidades">Nuestras especialidades</button>
+
+    <a class="btn-wsp"
+       href="https://wa.me/5491132883615?text=Me%20gustaría%20encargarte%20..."
+       target="_blank">
+       Hacenos tu pedido por WhatsApp
+    </a>
+
+    <!-- ACORDEÓN -->
+    <div class="acordeon" id="acordeon" style="display:none;">
+
+      <div class="acordeon-item">
+        <div class="acordeon-titulo">Sorrentinos</div>
+        <div class="acordeon-contenido">
+          <div class="fila-botones">
+            <button data-foto="muzzarela-jamon.jpg">Muzzarela y jamón</button>
+            <button data-foto="pollo-verdura.jpg">Pollo y verdura</button>
+            <button data-foto="carne-desmechada.jpg">Carne desmechada</button>
+            <button data-foto="verduras.jpg">Verduras</button>
+            <button data-foto="picado.jpg">Picado</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-titulo">Agnolotis</div>
+        <div class="acordeon-contenido">
+          <div class="fila-botones">
+            <button data-foto="agnolotis-ricota-nuez.jpg">Ricota y nuez</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-titulo">Panzottis</div>
+        <div class="acordeon-contenido">
+          <div class="fila-botones">
+            <button data-foto="panzottis.jpg">Panzottis clásicos</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-titulo">Tallarines</div>
+        <div class="acordeon-contenido">
+          <div class="fila-botones">
+            <button data-foto="tallarines.jpg">Tallarines frescos</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-titulo">Malfatti</div>
+        <div class="acordeon-contenido">
+          <div class="fila-botones">
+            <button data-foto="malfatti-papas.jpg">Malfatti de papas</button>
+            <button data-foto="malfatti-verduras.jpg">Malfatti de verduras</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="foto-container" id="foto-container"></div>
+  </div>
+
+  <script>
+    const btnEspecialidades = document.getElementById("btn-especialidades");
+    const acordeon = document.getElementById("acordeon");
+
+    btnEspecialidades.addEventListener("click", () => {
+      acordeon.style.display =
+        acordeon.style.display === "block" ? "none" : "block";
+    });
+
+    document.querySelectorAll(".acordeon-titulo").forEach(titulo => {
+      titulo.addEventListener("click", () => {
+        const contenido = titulo.nextElementSibling;
+
+        document.querySelectorAll(".acordeon-contenido").forEach(c => {
+          if (c !== contenido) c.style.maxHeight = null;
+        });
+
+        contenido.style.maxHeight =
+          contenido.style.maxHeight ? null : contenido.scrollHeight + "px";
+      });
+    });
+
+    const fotoContainer = document.getElementById("foto-container");
+
+    document.querySelectorAll("[data-foto]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const foto = btn.getAttribute("data-foto");
+
+        fotoContainer.innerHTML = `
+          <img src="img/${foto}" alt="${btn.textContent.trim()}" />
+          <p>${btn.textContent.trim()}</p>
+        `;
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
