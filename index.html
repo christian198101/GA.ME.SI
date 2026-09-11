@@ -8,9 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
 
   <style>
-    /* ------------------------------
-       ESTILO GENERAL
-    ------------------------------ */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -22,7 +19,6 @@
       background-attachment: fixed;
     }
 
-    /* Overlay */
     body::before {
       content: "";
       position: fixed;
@@ -68,9 +64,6 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
 
-    /* ------------------------------
-       BOTONES
-    ------------------------------ */
     .btn,
     .btn-wsp {
       background: linear-gradient(135deg, #8b5a2b, #5c3a1e);
@@ -110,9 +103,6 @@
       left: 100%;
     }
 
-    /* ------------------------------
-       ACORDEÓN
-    ------------------------------ */
     .acordeon {
       background: rgba(0,0,0,0.55);
       border-radius: 10px;
@@ -174,21 +164,38 @@
       background: rgba(255,255,255,0.15);
     }
 
-    /* ------------------------------
-       FOTO
-    ------------------------------ */
+    /* FOTO */
     .foto-container img {
       max-width: 400px;
       width: 100%;
       border-radius: 8px;
       margin-top: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-      transition: transform .3s ease, box-shadow .3s ease;
+      transition: transform .3s ease;
+      cursor: pointer;
     }
 
-    .foto-container img:hover {
-      transform: scale(1.04);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.8);
+    /* ZOOM */
+    .foto-container img.activa {
+      transform: scale(1.25);
+      z-index: 999;
+    }
+
+    #cerrar-foto {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #fff;
+      transition: .3s;
+      margin-top: 10px;
+    }
+
+    #cerrar-foto:hover {
+      background: rgba(255,255,255,0.25);
+      color: #ffd27f;
     }
 
     .foto-container p {
@@ -196,9 +203,6 @@
       font-size: 18px;
     }
 
-    /* ------------------------------
-       MÓVILES (FONDO ESPECIAL)
-    ------------------------------ */
     @media only screen and (max-width: 768px) {
       body {
         background-image: url("img/fondo-pastas-mobile.jpg");
@@ -243,12 +247,10 @@
 
 <body>
 
-  <!-- MÚSICA DE FONDO -->
   <audio id="musica-fondo" autoplay loop muted>
     <source src="audio/musica.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- BOTÓN PARA ACTIVAR MÚSICA EN MÓVILES -->
   <button class="btn" id="activar-sonido">Activar música 🎵</button>
 
   <script>
@@ -279,18 +281,22 @@
        Hacenos tu pedido por WhatsApp
     </a>
 
-    <!-- ACORDEÓN -->
     <div class="acordeon" id="acordeon" style="display:none;">
 
       <div class="acordeon-item">
         <div class="acordeon-titulo">Sorrentinos</div>
         <div class="acordeon-contenido">
           <div class="fila-botones">
-            <button data-foto="muzzarela-jamon.jpg">Muzzarela y jamón</button>
-            <button data-foto="pollo-verdura.jpg">Pollo y verdura</button>
-            <button data-foto="carne-desmechada.jpg">Carne desmechada</button>
-            <button data-foto="verduras.jpg">Verduras</button>
-            <button data-foto="picado.jpg">Picado</button>
+
+            <!-- AHORA ESTE BOTÓN TIENE 3 FOTOS -->
+            <button data-fotos="muzzarela1.jpg,muzzarela2.jpg,muzzarela3.jpg">
+              Muzzarela y jamón
+            </button>
+
+            <button data-fotos="pollo-verdura.jpg">Pollo y verdura</button>
+            <button data-fotos="carne-desmechada.jpg">Carne desmechada</button>
+            <button data-fotos="verduras.jpg">Verduras</button>
+            <button data-fotos="picado.jpg">Picado</button>
           </div>
         </div>
       </div>
@@ -299,7 +305,7 @@
         <div class="acordeon-titulo">Agnolotis</div>
         <div class="acordeon-contenido">
           <div class="fila-botones">
-            <button data-foto="agnolotis-ricota-nuez.jpg">Ricota y nuez</button>
+            <button data-fotos="agnolotis-ricota-nuez.jpg">Ricota y nuez</button>
           </div>
         </div>
       </div>
@@ -308,7 +314,7 @@
         <div class="acordeon-titulo">Panzottis</div>
         <div class="acordeon-contenido">
           <div class="fila-botones">
-            <button data-foto="panzottis.jpg">Panzottis clásicos</button>
+            <button data-fotos="panzottis.jpg">Panzottis clásicos</button>
           </div>
         </div>
       </div>
@@ -317,7 +323,7 @@
         <div class="acordeon-titulo">Tallarines</div>
         <div class="acordeon-contenido">
           <div class="fila-botones">
-            <button data-foto="tallarines.jpg">Tallarines frescos</button>
+            <button data-fotos="tallarines.jpg">Tallarines frescos</button>
           </div>
         </div>
       </div>
@@ -326,8 +332,8 @@
         <div class="acordeon-titulo">Malfatti</div>
         <div class="acordeon-contenido">
           <div class="fila-botones">
-            <button data-foto="malfatti-papas.jpg">Malfatti de papas</button>
-            <button data-foto="malfatti-verduras.jpg">Malfatti de verduras</button>
+            <button data-fotos="malfatti-papas.jpg">Malfatti de papas</button>
+            <button data-fotos="malfatti-verduras.jpg">Malfatti de verduras</button>
           </div>
         </div>
       </div>
@@ -361,20 +367,44 @@
 
     const fotoContainer = document.getElementById("foto-container");
 
-    document.querySelectorAll("[data-foto]").forEach(btn => {
+    /* MOSTRAR UNA O VARIAS FOTOS */
+    document.querySelectorAll("[data-fotos]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const foto = btn.getAttribute("data-foto");
 
-        fotoContainer.innerHTML = `
-          <img src="img/${foto}" alt="${btn.textContent.trim()}" />
+        const fotos = btn.getAttribute("data-fotos").split(",");
+
+        let html = "";
+
+        fotos.forEach(f => {
+          html += `
+            <img src="img/${f.trim()}" alt="${btn.textContent.trim()}" />
+          `;
+        });
+
+        html += `
           <p>${btn.textContent.trim()}</p>
+          <button id="cerrar-foto">Cerrar fotos ✖</button>
         `;
+
+        fotoContainer.innerHTML = html;
+
+        document.getElementById("cerrar-foto").addEventListener("click", () => {
+          fotoContainer.innerHTML = "";
+        });
       });
+    });
+
+    /* ZOOM AL HACER CLICK */
+    fotoContainer.addEventListener("click", (e) => {
+      if (e.target.tagName === "IMG") {
+        e.target.classList.toggle("activa");
+      }
     });
   </script>
 
 </body>
 </html>
+
 
 
 
