@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>GA.ME.SI - Pastas Caseras</title>
 
-  <!-- FUENTE ITALIANA -->
   <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
 
   <style>
@@ -13,8 +12,6 @@
       font-family: Arial, sans-serif;
       color: #f5f5f5;
       background-image: url("img/fondo-pastas.jpg");
-      background-repeat: no-repeat;
-      background-position: center center;
       background-size: cover;
       background-attachment: fixed;
     }
@@ -45,14 +42,6 @@
       letter-spacing: 6px;
       margin-top: -40px;
       margin-bottom: 5px;
-      text-shadow:
-        0 0 10px rgba(0,0,0,0.8),
-        -2px -2px 5px rgba(255,255,255,0.25),
-        5px 5px 0px rgba(0,0,0,0.6),
-        10px 10px 18px rgba(0,0,0,0.85),
-        -5px -5px 10px rgba(255,230,160,0.65),
-        0 0 22px rgba(255,215,100,0.7),
-        0 0 35px rgba(255,215,100,0.6);
     }
 
     h2 {
@@ -60,12 +49,9 @@
       font-size: 24px;
       font-weight: 400;
       margin-bottom: 20px;
-      color: #f5f5f5;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
 
-    .btn,
-    .btn-wsp {
+    .btn {
       background: linear-gradient(135deg, #8b5a2b, #5c3a1e);
       color: #f5f5f5;
       border: 2px solid #3a2412;
@@ -74,33 +60,21 @@
       cursor: pointer;
       border-radius: 8px;
       font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-      transition: 0.2s;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: -5px;
+      margin: 10px 0;
       background-image: url('img/textura-madera.jpg');
       background-size: cover;
       background-blend-mode: multiply;
-      position: relative;
-      overflow: hidden;
+      display: inline-block;
+      text-decoration: none;
+      transition: 0.25s ease;
     }
 
-    .btn::after,
-    .btn-wsp::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: .6s;
-    }
-
-    .btn:hover::after,
-    .btn-wsp:hover::after {
-      left: 100%;
+    /* EFECTO HOVER EN TODOS LOS BOTONES */
+    .btn:hover,
+    .fila-botones button:hover {
+      transform: scale(1.06);
+      background: rgba(255,255,255,0.20);
+      color: #ffd27f;
     }
 
     .acordeon {
@@ -108,12 +82,6 @@
       border-radius: 10px;
       margin-top: 20px;
       padding: 10px;
-      animation: fadeIn .6s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .acordeon-item {
@@ -125,12 +93,12 @@
       font-size: 22px;
       cursor: pointer;
       background: rgba(0,0,0,0.4);
-      transition: .3s;
       text-align: left;
+      transition: 0.25s ease;
     }
 
     .acordeon-titulo:hover {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.15);
       color: #ffd27f;
     }
 
@@ -148,7 +116,7 @@
       justify-content: center;
     }
 
-    .acordeon-contenido button {
+    .fila-botones button {
       padding: 12px 18px;
       border-radius: 6px;
       background: rgba(255,255,255,0.08);
@@ -156,29 +124,22 @@
       color: #f5f5f5;
       font-size: 18px;
       cursor: pointer;
-      white-space: nowrap;
+      transition: 0.25s ease;
     }
 
-    .acordeon-contenido button:hover {
-      color: #ffd27f;
-      background: rgba(255,255,255,0.15);
-    }
-
-    /* FOTO */
+    /* FOTOS */
     .foto-container img {
       max-width: 400px;
       width: 100%;
       border-radius: 8px;
       margin-top: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-      transition: transform .3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
       cursor: pointer;
+      transition: .3s;
     }
 
-    /* ZOOM */
     .foto-container img.activa {
       transform: scale(1.25);
-      z-index: 999;
     }
 
     #cerrar-foto {
@@ -188,126 +149,108 @@
       font-size: 16px;
       border-radius: 6px;
       cursor: pointer;
-      color: #fff;
-      transition: .3s;
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
-    #cerrar-foto:hover {
-      background: rgba(255,255,255,0.25);
+    /* MODAL RECETAS */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      background: rgba(0,0,0,0.85);
+      padding: 25px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+      animation: fadeIn .4s ease;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      font-size: 28px;
       color: #ffd27f;
     }
 
-    .foto-container p {
-      margin-top: 10px;
-      font-size: 18px;
+    .modal-content ul {
+      text-align: left;
+      margin-bottom: 15px;
     }
 
-    @media only screen and (max-width: 768px) {
-      body {
-        background-image: url("img/fondo-pastas-mobile.jpg");
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        background-attachment: scroll;
-      }
-
-      body::before {
-        background: rgba(0,0,0,0.25);
-      }
-
-      .container {
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        border-radius: 0;
-        padding: 10px 5px;
-      }
-
-      h1 {
-        font-size: 48px;
-        margin-top: -10px;
-      }
-
-      h2 {
-        font-size: 18px;
-      }
-
-      .btn, .btn-wsp {
-        width: 95%;
-        font-size: 16px;
-      }
-
-      .foto-container img {
-        max-width: 95%;
-      }
+    .close-modal {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
     }
   </style>
 </head>
 
 <body>
 
-  <audio id="musica-fondo" autoplay loop muted>
-    <source src="audio/musica.mp3" type="audio/mpeg">
-  </audio>
-
-  <button class="btn" id="activar-sonido">Activar música 🎵</button>
-
-  <script>
-    const musica = document.getElementById("musica-fondo");
-    const activarSonido = document.getElementById("activar-sonido");
-
-    activarSonido.addEventListener("click", () => {
-      musica.muted = false;
-      musica.play();
-    });
-
-    window.addEventListener("DOMContentLoaded", () => {
-      setTimeout(() => {
-        musica.muted = false;
-      }, 1000);
-    });
-  </script>
-
   <div class="container">
     <h1>GA.ME.SI</h1>
     <h2>Boutique de Pastas Gourmet.</h2>
 
+    <!-- BOTÓN DE MÚSICA -->
+    <audio id="musica-fondo" autoplay loop muted>
+      <source src="audio/musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="btn" id="activar-sonido">Activar música 🎵</button>
+
+    <script>
+      const musica = document.getElementById("musica-fondo");
+      const activarSonido = document.getElementById("activar-sonido");
+
+      activarSonido.addEventListener("click", () => {
+        musica.muted = false;
+        musica.play();
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          musica.muted = false;
+        }, 1000);
+      });
+    </script>
+
+    <!-- BOTÓN 1 -->
     <button class="btn" id="btn-especialidades">Nuestras especialidades</button>
 
-    <a class="btn-wsp"
+    <!-- BOTÓN 2 (WHATSAPP) -->
+    <a class="btn"
        href="https://wa.me/5491132883615?text=Me%20gustaría%20encargarte%20..."
        target="_blank">
        Hacenos tu pedido por WhatsApp
     </a>
 
-    <div class="acordeon" id="acordeon" style="display:none;">
+    <!-- BOTÓN 3 -->
+    <button class="btn" id="btn-recetas">Aquí te dejamos algunas recetas GA.ME.SI</button>
+
+    <!-- ACORDEÓN ESPECIALIDADES -->
+    <div class="acordeon" id="acordeon-especialidades" style="display:none;">
 
       <div class="acordeon-item">
         <div class="acordeon-titulo">Sorrentinos</div>
         <div class="acordeon-contenido">
           <div class="fila-botones">
-
-            <!-- 3 fotos -->
-            <button data-fotos="muzzarela1.jpg,muzzarela2.jpg,muzzarela3.jpg">
-              Muzzarela y jamón
-            </button>
-
-            <!-- 3 fotos en Pollo y verdura -->
-            <button data-fotos="pollo-verdura1.jpg,pollo-verdura2.jpg,pollo-verdura3.jpg">
-              Pollo y verdura
-            </button>
-
-            <!-- 2 fotos -->
-            <button data-fotos="sorrentinos-verduras1.jpg,sorrentinos-verduras2.jpg">
-              Verduras
-            </button>
-
-            <!-- AHORA 3 FOTOS EN CARNE DESMECHADA -->
-            <button data-fotos="carne-desmechada1.jpg,carne-desmechada2.jpg,carne-desmechada3.jpg">
-              Carne desmechada
-            </button>
-
+            <button data-fotos="muzzarela1.jpg,muzzarela2.jpg,muzzarela3.jpg">Muzzarela y jamón</button>
+            <button data-fotos="pollo-verdura1.jpg,pollo-verdura2.jpg,pollo-verdura3.jpg">Pollo y verdura</button>
+            <button data-fotos="sorrentinos-verduras1.jpg,sorrentinos-verduras2.jpg">Verduras</button>
+            <button data-fotos="carne-desmechada1.jpg,carne-desmechada2.jpg,carne-desmechada3.jpg">Carne desmechada</button>
             <button data-fotos="picado.jpg">Picado</button>
           </div>
         </div>
@@ -335,12 +278,7 @@
         <div class="acordeon-titulo">Tallarines</div>
         <div class="acordeon-contenido">
           <div class="fila-botones">
-
-            <!-- 3 fotos de tallarines -->
-            <button data-fotos="tallarines1.jpg,tallarines2.jpg,tallarines3.jpg">
-              Tallarines frescos
-            </button>
-
+            <button data-fotos="tallarines1.jpg,tallarines2.jpg,tallarines3.jpg">Tallarines frescos</button>
           </div>
         </div>
       </div>
@@ -355,18 +293,58 @@
         </div>
       </div>
 
+      <div class="acordeon-item">
+        <div class="acordeon-titulo">Extras Gourmet</div>
+        <div class="acordeon-contenido">
+          <div class="fila-botones">
+            <button data-fotos="berenjenas1.jpg,berenjenas2.jpg,berenjenas3.jpg">
+              No te pierdas de probar nuestras berenjenas al escabeche
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ACORDEÓN RECETAS -->
+    <div class="acordeon" id="acordeon-recetas" style="display:none;">
+      <div class="acordeon-item">
+        <div class="acordeon-titulo">Recetas GA.ME.SI</div>
+        <div class="acordeon-contenido">
+          <div class="fila-botones">
+            <button class="btn-receta" data-receta="1">Receta 1</button>
+            <button class="btn-receta" data-receta="2">Receta 2</button>
+            <button class="btn-receta" data-receta="3">Receta 3</button>
+            <button class="btn-receta" data-receta="4">Receta 4</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="foto-container" id="foto-container"></div>
   </div>
 
+  <!-- MODAL RECETAS -->
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+
   <script>
     const btnEspecialidades = document.getElementById("btn-especialidades");
-    const acordeon = document.getElementById("acordeon");
+    const btnRecetas = document.getElementById("btn-recetas");
+    const acordeonEspecialidades = document.getElementById("acordeon-especialidades");
+    const acordeonRecetas = document.getElementById("acordeon-recetas");
 
     btnEspecialidades.addEventListener("click", () => {
-      acordeon.style.display =
-        acordeon.style.display === "block" ? "none" : "block";
+      acordeonEspecialidades.style.display =
+        acordeonEspecialidades.style.display === "block" ? "none" : "block";
+      acordeonRecetas.style.display = "none";
+    });
+
+    btnRecetas.addEventListener("click", () => {
+      acordeonRecetas.style.display =
+        acordeonRecetas.style.display === "block" ? "none" : "block";
+      acordeonEspecialidades.style.display = "none";
     });
 
     document.querySelectorAll(".acordeon-titulo").forEach(titulo => {
@@ -382,27 +360,19 @@
       });
     });
 
+    /* FOTOS */
     const fotoContainer = document.getElementById("foto-container");
 
-    /* MOSTRAR UNA O VARIAS FOTOS */
     document.querySelectorAll("[data-fotos]").forEach(btn => {
       btn.addEventListener("click", () => {
-
         const fotos = btn.getAttribute("data-fotos").split(",");
-
         let html = "";
 
         fotos.forEach(f => {
-          html += `
-            <img src="img/${f.trim()}" alt="${btn.textContent.trim()}" />
-          `;
+          html += `<img src="img/${f.trim()}" alt="">`;
         });
 
-        html += `
-          <p>${btn.textContent.trim()}</p>
-          <button id="cerrar-foto">Cerrar fotos ✖</button>
-        `;
-
+        html += `<button id="cerrar-foto">Cerrar fotos ✖</button>`;
         fotoContainer.innerHTML = html;
 
         document.getElementById("cerrar-foto").addEventListener("click", () => {
@@ -411,17 +381,80 @@
       });
     });
 
-    /* ZOOM AL HACER CLICK */
     fotoContainer.addEventListener("click", (e) => {
       if (e.target.tagName === "IMG") {
         e.target.classList.toggle("activa");
       }
     });
+
+    /* MODAL RECETAS */
+    const modal = document.getElementById("modal");
+    const modalContent = document.getElementById("modal-content");
+
+    const recetas = {
+      1: `
+        <h3>Tallarines con Salsa Teriyaki</h3>
+        <ul>
+          <li>300 g de tallarines GA.ME.SI</li>
+          <li>4 cucharadas de salsa teriyaki</li>
+          <li>1 cucharada de miel</li>
+          <li>1 cucharada de aceite de sésamo</li>
+          <li>Ajo y jengibre</li>
+        </ul>
+        <p>Hervir los tallarines. Saltear la salsa teriyaki con miel, ajo y jengibre. Mezclar con los tallarines y servir.</p>
+      `,
+      2: `
+        <h3>Sorrentinos con Salsa Scarparo</h3>
+        <ul>
+          <li>Sorrentinos GA.ME.SI</li>
+          <li>Panceta, cebolla y ajo</li>
+          <li>Salsa de tomate</li>
+          <li>Crema de leche</li>
+        </ul>
+        <p>Dorar panceta, agregar cebolla y ajo. Sumar salsa de tomate y crema. Mezclar con los sorrentinos.</p>
+      `,
+      3: `
+        <h3>Panzottis con Pesto de Nuez</h3>
+        <ul>
+          <li>Panzottis GA.ME.SI</li>
+          <li>Albahaca</li>
+          <li>Nueces</li>
+          <li>Ajo</li>
+          <li>Aceite de oliva</li>
+        </ul>
+        <p>Procesar albahaca, nueces, ajo y aceite. Mezclar con los panzottis recién hervidos.</p>
+      `,
+      4: `
+        <h3>Agnolotis con Salsa Parisienne</h3>
+        <ul>
+          <li>Agnolotis GA.ME.SI</li>
+          <li>Jamón</li>
+          <li>Champiñones</li>
+          <li>Crema de leche</li>
+        </ul>
+        <p>Saltear jamón y champiñones. Agregar crema. Mezclar con los agnolotis y servir.</p>
+      `
+    };
+
+    document.querySelectorAll(".btn-receta").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-receta");
+        modalContent.innerHTML = recetas[id] + `<button class="close-modal">Cerrar</button>`;
+        modal.style.display = "flex";
+
+        document.querySelector(".close-modal").addEventListener("click", () => {
+          modal.style.display = "none";
+        });
+      });
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.style.display = "none";
+    });
   </script>
 
 </body>
 </html>
-
 
 
 
