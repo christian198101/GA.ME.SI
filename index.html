@@ -14,7 +14,7 @@
       background-image: url("img/fondo-pastas.jpg");
       background-size: cover;
       background-attachment: fixed;
-      background-position: center -380px; /* FOTO SUBIDA MÁS PARA VER TALLARINES */
+      background-position: center -380px;
     }
 
     body::before {
@@ -193,6 +193,51 @@
       cursor: pointer;
       margin-top: 15px;
     }
+
+    /* 📱 MEJORAS PARA MÓVILES */
+    @media (max-width: 768px) {
+
+      body {
+        background-position: center center;
+        background-attachment: scroll;
+      }
+
+      .container {
+        width: 95%;
+        padding: 15px;
+        margin-top: 10px;
+      }
+
+      h1 {
+        font-size: 60px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      .btn {
+        font-size: 20px;
+        padding: 16px 30px;
+        width: 100%;
+      }
+
+      .fila-botones {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .fila-botones button {
+        width: 100%;
+        font-size: 18px;
+        padding: 14px 22px;
+      }
+
+      .foto-container img {
+        max-width: 100%;
+      }
+    }
+
   </style>
 </head>
 
@@ -202,7 +247,6 @@
     <h1>GA.ME.SI</h1>
     <h2>Boutique de Pastas Gourmet.</h2>
 
-    <!-- BOTÓN DE MÚSICA -->
     <audio id="musica-fondo" autoplay loop muted>
       <source src="audio/musica.mp3" type="audio/mpeg">
     </audio>
@@ -225,20 +269,16 @@
       });
     </script>
 
-    <!-- BOTÓN 1 -->
     <button class="btn" id="btn-especialidades">Nuestras especialidades</button>
 
-    <!-- BOTÓN 2 (WHATSAPP) -->
     <a class="btn"
        href="https://wa.me/5491132883615?text=Me%20gustaría%20encargarte%20..."
        target="_blank">
        Hacenos tu pedido por WhatsApp
     </a>
 
-    <!-- BOTÓN 3 -->
     <button class="btn" id="btn-recetas">Aquí te dejamos algunas recetas GA.ME.SI</button>
 
-    <!-- ACORDEÓN ESPECIALIDADES -->
     <div class="acordeon" id="acordeon-especialidades" style="display:none;">
 
       <div class="acordeon-item">
@@ -304,7 +344,6 @@
 
     </div>
 
-    <!-- ACORDEÓN RECETAS -->
     <div class="acordeon" id="acordeon-recetas" style="display:none;">
       <div class="acordeon-item">
         <div class="acordeon-titulo">Recetas GA.ME.SI</div>
@@ -322,7 +361,6 @@
     <div class="foto-container" id="foto-container"></div>
   </div>
 
-  <!-- MODAL RECETAS -->
   <div class="modal" id="modal">
     <div class="modal-content" id="modal-content"></div>
   </div>
@@ -358,7 +396,6 @@
       });
     });
 
-    /* FOTOS */
     const fotoContainer = document.getElementById("foto-container");
 
     document.querySelectorAll("[data-fotos]").forEach(btn => {
@@ -385,7 +422,6 @@
       }
     });
 
-    /* MODAL RECETAS */
     const modal = document.getElementById("modal");
     const modalContent = document.getElementById("modal-content");
 
