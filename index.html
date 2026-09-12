@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
 
   <style>
+    /* Fondo escritorio */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -14,7 +15,7 @@
       background-image: url("img/fondo-pastas.jpg");
       background-size: cover;
       background-attachment: fixed;
-      background-position: center -380px;
+      background-position: center center;
       background-repeat: no-repeat;
     }
 
@@ -184,13 +185,14 @@
       margin-top: 15px;
     }
 
+    /* 📱 FONDO PARA MÓVILES (IMAGEN VERTICAL) */
     @media (max-width: 768px) {
       body {
         background-image: url("img/fondo-mobile.jpg") !important;
-        background-attachment: scroll !important;
         background-size: cover !important;
         background-repeat: no-repeat !important;
         background-position: center center !important;
+        background-attachment: scroll !important;
       }
 
       .container {
