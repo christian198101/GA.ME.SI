@@ -174,17 +174,6 @@
       animation: fadeIn .4s ease;
     }
 
-    .modal-content h3 {
-      margin-top: 0;
-      font-size: 28px;
-      color: #ffd27f;
-    }
-
-    .modal-content ul {
-      text-align: left;
-      margin-bottom: 15px;
-    }
-
     .close-modal {
       background: rgba(255,255,255,0.15);
       border: 1px solid rgba(255,255,255,0.3);
@@ -195,10 +184,9 @@
       margin-top: 15px;
     }
 
-    /* 📱 MEJORAS PARA MÓVILES */
     @media (max-width: 768px) {
-
       body {
+        background-image: url("img/fondo-mobile.jpg") !important;
         background-attachment: scroll !important;
         background-size: cover !important;
         background-repeat: no-repeat !important;
@@ -240,7 +228,6 @@
         max-width: 100%;
       }
     }
-
   </style>
 </head>
 
@@ -283,7 +270,6 @@
     <button class="btn" id="btn-recetas">Aquí te dejamos algunas recetas GA.ME.SI</button>
 
     <div class="acordeon" id="acordeon-especialidades" style="display:none;">
-
       <div class="acordeon-item">
         <div class="acordeon-titulo">Sorrentinos</div>
         <div class="acordeon-contenido">
@@ -344,7 +330,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="acordeon" id="acordeon-recetas" style="display:none;">
@@ -491,5 +476,3 @@
   </script>
 
 </body>
-
-
