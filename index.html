@@ -191,21 +191,26 @@
     /* 📱 BOTONES VERTICALES + EXTRA GRANDES EN MÓVILES */
     @media (max-width: 768px) {
 
-      .btn {
-        display: block !important;
-        width: 100% !important;
-        font-size: 32px !important;
-        padding: 32px 40px !important;
-        margin: 22px 0 !important;
-        border-radius: 18px !important;
-      }
+  /* TODOS LOS BOTONES PRINCIPALES Y DE ACCIONES */
+  .btn,
+  button,
+  a.btn {
+    display: block !important;      /* Fuerza vertical */
+    width: 100% !important;         /* Ocupa toda la línea */
+    font-size: 30px !important;     /* Más grandes */
+    padding: 28px 36px !important;  /* Más altos */
+    margin: 20px 0 !important;      /* Separación */
+    border-radius: 16px !important; /* Más redondeados */
+    text-align: center !important;
+}
 
-      .fila-botones {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-        gap: 26px !important;
-      }
+  /* CONTENEDOR DE BOTONES DEL ACORDEÓN */
+  .fila-botones {
+    display: flex !important;
+    flex-direction: column !important; /* 🔥 Vertical siempre */
+    width: 100% !important;
+    gap: 24px !important;              /* Más separación */
+  }
 
       .fila-botones button {
         display: block !important;
