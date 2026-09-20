@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
 
   <style>
-    /* Fondo escritorio */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -29,12 +28,11 @@
 
     .container {
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 20px auto;
       padding: 20px;
       text-align: center;
       background: rgba(0,0,0,0.45);
       border-radius: 10px;
-      margin-top: 20px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.55);
     }
 
@@ -43,7 +41,6 @@
       font-size: 80px;
       color: #E6C75A;
       letter-spacing: 6px;
-      margin-top: -40px;
       margin-bottom: 5px;
     }
 
@@ -72,8 +69,7 @@
       transition: 0.25s ease;
     }
 
-    .btn:hover,
-    .fila-botones button:hover {
+    .btn:hover {
       transform: scale(1.06);
       background: rgba(255,255,255,0.20);
       color: #ffd27f;
@@ -108,7 +104,7 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height .4s ease;
-      padding: 15px;
+      padding: 0 15px;
     }
 
     .fila-botones {
@@ -116,6 +112,7 @@
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
+      padding: 15px 0;
     }
 
     .fila-botones button {
@@ -127,6 +124,12 @@
       font-size: 18px;
       cursor: pointer;
       transition: 0.25s ease;
+    }
+
+    .fila-botones button:hover {
+      transform: scale(1.06);
+      background: rgba(255,255,255,0.20);
+      color: #ffd27f;
     }
 
     .foto-container img {
@@ -185,52 +188,44 @@
       margin-top: 15px;
     }
 
-    /* 📱 FONDO Y BOTONES PARA MÓVILES — EXTRA GRANDES */
     @media (max-width: 768px) {
-
       body {
         background-image: url("img/fondo-mobile.jpg") !important;
-        background-size: contain !important;
-        background-repeat: no-repeat !important;
-        background-position: center center !important;
+        background-size: cover !important;
+        background-position: center 20% !important;
         background-attachment: scroll !important;
-        background-color: #000 !important;
       }
 
       .container {
         width: 95%;
-        padding: 22px;
-        margin-top: 18px;
+        padding: 18px;
       }
 
       h1 {
-        font-size: 75px;
+        font-size: 65px;
       }
 
       h2 {
-        font-size: 26px;
+        font-size: 22px;
       }
 
-      /* ⭐ BOTONES PRINCIPALES — EXTRA GRANDES ⭐ */
       .btn {
-        font-size: 32px;
-        padding: 34px 40px;
+        font-size: 26px;
+        padding: 24px 36px;
         width: 100%;
-        border-radius: 22px;
-        border: 4px solid #E6C75A;
-        background: rgba(139, 90, 43, 0.90);
-        box-shadow: 0 0 26px rgba(255, 215, 130, 0.55);
+        border-radius: 14px;
       }
 
-      /* ⭐ BOTONES DE OPCIONES — EXTRA GRANDES ⭐ */
+      .fila-botones {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .fila-botones button {
         width: 100%;
-        font-size: 30px;
-        padding: 30px 34px;
-        border-radius: 22px;
-        border: 4px solid #E6C75A;
-        background: rgba(255,255,255,0.18);
-        box-shadow: 0 0 24px rgba(255, 215, 130, 0.50);
+        font-size: 24px;
+        padding: 22px 30px;
+        border-radius: 12px;
       }
 
       .foto-container img {
@@ -246,7 +241,7 @@
     <h1>GA.ME.SI</h1>
     <h2>Boutique de Pastas Gourmet.</h2>
 
-    <audio id="musica-fondo" autoplay loop muted>
+    <audio id="musica-fondo" autoplay loop muted aria-label="Música de fondo">
       <source src="audio/musica.mp3" type="audio/mpeg">
     </audio>
 
@@ -259,12 +254,7 @@
       activarSonido.addEventListener("click", () => {
         musica.muted = false;
         musica.play();
-      });
-
-      window.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-          musica.muted = false;
-        }, 1000);
+        activarSonido.textContent = "Música activada 🎶";
       });
     </script>
 
@@ -480,10 +470,10 @@
     });
 
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
+      if (e.target === modal) modal.style.display = "none";
     });
   </script>
 
 </body>
+</html>
+
