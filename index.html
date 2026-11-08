@@ -1,476 +1,868 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GA.ME.SI - Pastas Caseras</title>
+<meta charset="UTF-8">
+<title>GA.ME.SI - Pastas Caseras</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #f5f5f5;
-      background-image: url("img/fondo-pastas.jpg");
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
+<style>
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.12);
-      z-index: -1;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      text-align: center;
-      background: rgba(0,0,0,0.45);
-      border-radius: 10px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.55);
-    }
-
-    h1 {
-      font-family: "Italianno", cursive;
-      font-size: 80px;
-      color: #E6C75A;
-      letter-spacing: 6px;
-      margin-bottom: 5px;
-    }
-
-    h2 {
-      margin-top: 5px;
-      font-size: 24px;
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      background: linear-gradient(135deg, #8b5a2b, #5c3a1e);
-      color: #f5f5f5;
-      border: 2px solid #3a2412;
-      padding: 14px 28px;
-      font-size: 18px;
-      cursor: pointer;
-      border-radius: 8px;
-      font-weight: bold;
-      margin: 10px 0;
-      background-image: url('img/textura-madera.jpg');
-      background-size: cover;
-      background-blend-mode: multiply;
-      display: inline-block;
-      text-decoration: none;
-      transition: 0.25s ease;
-    }
-
-    .btn:hover {
-      transform: scale(1.06);
-      background: rgba(255,255,255,0.20);
-      color: #ffd27f;
-    }
-
-    .acordeon {
-      background: rgba(0,0,0,0.55);
-      border-radius: 10px;
-      margin-top: 20px;
-      padding: 10px;
-    }
-
-    .acordeon-item {
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .acordeon-titulo {
-      padding: 15px;
-      font-size: 22px;
-      cursor: pointer;
-      background: rgba(0,0,0,0.4);
-      text-align: left;
-      transition: 0.25s ease;
-    }
-
-    .acordeon-titulo:hover {
-      background: rgba(255,255,255,0.15);
-      color: #ffd27f;
-    }
-
-    .acordeon-contenido {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .4s ease;
-      padding: 0 15px;
-    }
-
-    .fila-botones {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      padding: 15px 0;
-    }
-
-    .fila-botones button {
-      padding: 12px 18px;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.08);
-      border: none;
-      color: #f5f5f5;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
-
-    .fila-botones button:hover {
-      transform: scale(1.06);
-      background: rgba(255,255,255,0.20);
-      color: #ffd27f;
-    }
-
-    .foto-container img {
-      max-width: 400px;
-      width: 100%;
-      border-radius: 8px;
-      margin-top: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
-      cursor: pointer;
-      transition: .3s;
-    }
-
-    .foto-container img.activa {
-      transform: scale(1.25);
-    }
-
-    #cerrar-foto {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    .modal-content {
-      background: rgba(0,0,0,0.85);
-      padding: 25px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 600px;
-      color: #fff;
-      box-shadow: 0 0 20px rgba(0,0,0,0.8);
-      animation: fadeIn .4s ease;
-    }
-
-    .close-modal {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    /* 📱 BOTONES VERTICALES + EXTRA GRANDES EN MÓVILES */
-    @media (max-width: 768px) {
-
-  /* TODOS LOS BOTONES PRINCIPALES Y DE ACCIONES */
-  .btn,
-  button,
-  a.btn {
-    display: block !important;      /* Fuerza vertical */
-    width: 100% !important;         /* Ocupa toda la línea */
-    font-size: 24px !important;     /* Más grandes */
-    padding: 20px 28px !important;  /* Más altos */
-    margin: 18px 0 !important;      /* Separación */
-    border-radius: 14px !important; /* Más redondeados */
-    text-align: center !important;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    color:#f5f5f5;
+    background-image:url("img/fondo-pastas.jpg");
+    background-size:cover;
+    background-attachment:fixed;
+    background-position:center center;
+    background-repeat:no-repeat;
 }
 
-  /* CONTENEDOR DE BOTONES DEL ACORDEÓN */
-  .fila-botones {
-    display: flex !important;
-    flex-direction: column !important; /* 🔥 Vertical siempre */
-    width: 100% !important;
-    gap: 24px !important;              /* Más separación */
-  }
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.12);
+    z-index:-1;
+}
 
-      .fila-botones button {
-        display: block !important;
-        width: 100% !important;
-        font-size: 22px !important;
-        padding: 18px 26px !important;
-        border-radius: 12px !important;
-        text-align: center !important;
-      }
+.container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:20px;
+    text-align:center;
+    background:rgba(0,0,0,.45);
+    border-radius:10px;
+    box-shadow:0 8px 25px rgba(0,0,0,.55);
+}
 
-      .foto-container img {
-        max-width: 100%;
-      }
+h1{
+    font-family:"Italianno",cursive;
+    font-size:80px;
+    color:#E6C75A;
+    letter-spacing:6px;
+    margin-bottom:5px;
+}
+
+h2{
+    margin-top:5px;
+    font-size:24px;
+    font-weight:400;
+    margin-bottom:20px;
+}
+
+.btn{
+    background:linear-gradient(135deg,#8b5a2b,#5c3a1e);
+    color:#f5f5f5;
+    border:2px solid #3a2412;
+    padding:14px 28px;
+    font-size:18px;
+    cursor:pointer;
+    border-radius:8px;
+    font-weight:bold;
+    margin:10px 0;
+    background-image:url("img/textura-madera.jpg");
+    background-size:cover;
+    background-blend-mode:multiply;
+    display:inline-block;
+    text-decoration:none;
+    transition:.25s ease;
+}
+
+.btn:hover{
+    transform:scale(1.06);
+    background:rgba(255,255,255,.20);
+    color:#ffd27f;
+}
+
+.acordeon{
+    background:rgba(0,0,0,.55);
+    border-radius:10px;
+    margin-top:20px;
+    padding:10px;
+}
+
+.acordeon-item{
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.acordeon-titulo{
+    padding:15px;
+    font-size:22px;
+    cursor:pointer;
+    background:rgba(0,0,0,.4);
+    text-align:left;
+    transition:.25s ease;
+}
+
+.acordeon-titulo:hover{
+    background:rgba(255,255,255,.15);
+    color:#ffd27f;
+}
+
+.acordeon-contenido{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease;
+    padding:0 15px;
+}
+
+.fila-botones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+    padding:15px 0;
+}
+
+.fila-botones button{
+    padding:12px 18px;
+    border-radius:6px;
+    background:rgba(255,255,255,.08);
+    border:none;
+    color:#f5f5f5;
+    font-size:18px;
+    cursor:pointer;
+    transition:.25s ease;
+}
+
+.fila-botones button:hover{
+    transform:scale(1.06);
+    background:rgba(255,255,255,.20);
+    color:#ffd27f;
+}
+.foto-container img{
+    max-width:400px;
+    width:100%;
+    border-radius:8px;
+    margin-top:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,.7);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.foto-container img.activa{
+    transform:scale(1.4);
+    position:relative;
+    z-index:10;
+}
+
+#cerrar-foto{
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.3);
+    padding:10px 20px;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(4px);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.modal-content{
+    background:rgba(0,0,0,.85);
+    padding:25px;
+    border-radius:12px;
+    width:90%;
+    max-width:600px;
+    color:#fff;
+    box-shadow:0 0 20px rgba(0,0,0,.8);
+}
+
+.close-modal{
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.3);
+    padding:10px 20px;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.boton-musica{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:rgba(0,0,0,.85);
+    color:#fff;
+    border:2px solid #fff;
+    font-size:28px;
+    cursor:pointer;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 15px rgba(0,0,0,.5);
+    transition:.3s;
+}
+
+.boton-musica:hover{
+    transform:scale(1.1);
+}
+
+.boton-musica.activo{
+    background:#4CAF50;
+}
+
+@media (max-width:768px){
+
+    .btn,
+    a.btn{
+        display:block !important;
+        width:100% !important;
+        font-size:30px !important;
+        padding:28px 36px !important;
+        margin:20px 0 !important;
+        border-radius:16px !important;
+        text-align:center !important;
     }
-  </style>
+
+    .fila-botones{
+        display:flex !important;
+        flex-direction:column !important;
+        width:100% !important;
+        gap:24px !important;
+    }
+
+    .fila-botones button{
+        display:block !important;
+        width:100% !important;
+        font-size:30px !important;
+        padding:30px 40px !important;
+        border-radius:18px !important;
+        text-align:center !important;
+    }
+
+    .foto-container img{
+        max-width:100%;
+    }
+
+}
+
+/* POPUP PROMOCION */
+
+.promo-popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.75);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+.promo-box{
+    background:rgba(20,10,5,.95);
+    border:2px solid #d4af37;
+    border-radius:20px;
+    padding:30px;
+    width:90%;
+    max-width:500px;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 30px rgba(0,0,0,.8);
+}
+
+.promo-deco{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.promo-box h2{
+    color:#E6C75A;
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.promo-frase{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.promo-oferta{
+    background:rgba(255,255,255,.08);
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+.precio{
+    color:#ffd27f;
+    font-size:42px;
+    font-weight:bold;
+}
+
+#cerrar-popup{
+    background:#d4af37;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>GA.ME.SI</h1>
-    <h2>Boutique de Pastas Gourmet.</h2>
+<div class="container">
 
-    <audio id="musica-fondo" autoplay loop muted aria-label="Música de fondo">
-      <source src="audio/musica.mp3" type="audio/mpeg">
-    </audio>
+<h1>GA.ME.SI</h1>
 
-    <button class="btn" id="activar-sonido">Activar música 🎵</button>
+<h2>Boutique de Pastas Gourmet.</h2>
 
-    <script>
-      const musica = document.getElementById("musica-fondo");
-      const activarSonido = document.getElementById("activar-sonido");
+<audio id="musica-fondo" autoplay loop muted>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+</audio>
 
-      activarSonido.addEventListener("click", () => {
-        musica.muted = false;
-        musica.play();
-        activarSonido.textContent = "Música activada 🎶";
-      });
-    </script>
+<button class="btn" id="btn-especialidades">
+    Nuestras especialidades
+</button>
 
-    <button class="btn" id="btn-especialidades">Nuestras especialidades</button>
+<a class="btn"
+href="https://wa.me/5491132883615?text=Me%20gustaría%20encargarte%20..."
+target="_blank">
+Hacenos tu pedido por WhatsApp
+</a>
 
-    <a class="btn"
-       href="https://wa.me/5491132883615?text=Me%20gustaría%20encargarte%20..."
-       target="_blank">
-       Hacenos tu pedido por WhatsApp
-    </a>
+<button class="btn" id="btn-recetas">
+    Aquí te dejamos algunas recetas GA.ME.SI
+</button>
 
-    <button class="btn" id="btn-recetas">Aquí te dejamos algunas recetas GA.ME.SI</button>
+<div class="acordeon" id="acordeon-especialidades" style="display:none;">
 
-    <!-- ACORDEÓN ESPECIALIDADES -->
-    <div class="acordeon" id="acordeon-especialidades" style="display:none;">
-      <div class="acordeon-item">
-        <div class="acordeon-titulo">Sorrentinos</div>
-        <div class="acordeon-contenido">
-          <div class="fila-botones">
-            <button data-fotos="muzzarela1.jpg,muzzarela2.jpg,muzzarela3.jpg">Muzzarela y jamón</button>
-            <button data-fotos="pollo-verdura1.jpg,pollo-verdura2.jpg,pollo-verdura3.jpg">Pollo y verdura</button>
-            <button data-fotos="sorrentinos-verduras1.jpg,sorrentinos-verduras2.jpg">Verduras</button>
-            <button data-fotos="carne-desmechada1.jpg,carne-desmechada2.jpg,carne-desmechada3.jpg">Carne desmechada</button>
-            <button data-fotos="picado.jpg">Picado</button>
-          </div>
-        </div>
-      </div>
+<div class="acordeon-item">
+<div class="acordeon-titulo">
+Sorrentinos
+</div>
 
-      <div class="acordeon-item">
-        <div class="acordeon-titulo">Agnolotis</div>
-        <div class="acordeon-contenido">
-          <div class="fila-botones">
-            <button data-fotos="agnolotis-ricota-nuez.jpg">Ricota y nuez</button>
-          </div>
-        </div>
-      </div>
+<div class="acordeon-contenido">
 
-      <div class="acordeon-item">
-        <div class="acordeon-titulo">Panzottis</div>
-        <div class="acordeon-contenido">
-          <div class="fila-botones">
-            <button data-fotos="panzottis.jpg">Panzottis clásicos</button>
-          </div>
-        </div>
-      </div>
+<div class="fila-botones">
 
-      <div class="acordeon-item">
-        <div class="acordeon-titulo">Tallarines</div>
-        <div class="acordeon-contenido">
-          <div class="fila-botones">
-            <button data-fotos="tallarines1.jpg,tallarines2.jpg,tallarines3.jpg">Tallarines frescos</button>
-          </div>
-        </div>
-      </div>
+<button data-fotos="muzzarela1.jpg,muzzarela2.jpg,muzzarela3.jpg">
+Muzzarela y jamón
+</button>
 
-      <div class="acordeon-item">
-        <div class="acordeon-titulo">Malfatti</div>
-        <div class="acordeon-contenido">
-          <div class="fila-botones">
-            <button data-fotos="malfatti-papas.jpg">Malfatti de papas</button>
-            <button data-fotos="malfatti-verduras.jpg">Malfatti de verduras</button>
-          </div>
-        </div>
-      </div>
+<button data-fotos="pollo-verdura1.jpg,pollo-verdura2.jpg,pollo-verdura3.jpg">
+Pollo y verdura
+</button>
 
-      <div class="acordeon-item">
-        <div class="acordeon-titulo">Extras Gourmet</div>
-        <div class="acordeon-contenido">
-          <div class="fila-botones">
-            <button data-fotos="berenjenas1.jpg,berenjenas2.jpg,berenjenas3.jpg">
-              No te pierdas de probar nuestras berenjenas al escabeche
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+<button data-fotos="sorrentinos-verduras1.jpg,sorrentinos-verduras2.jpg">
+Verduras
+</button>
 
-    <!-- ACORDEÓN RECETAS -->
-    <div class="acordeon" id="acordeon-recetas" style="display:none;">
-      <div class="acordeon-item">
-        <div class="acordeon-titulo">Recetas GA.ME.SI</div>
-        <div class="acordeon-contenido">
-          <div class="fila-botones">
-            <button class="btn-receta" data-receta="1">Receta 1</button>
-            <button class="btn-receta" data-receta="2">Receta 2</button>
-            <button class="btn-receta" data-receta="3">Receta 3</button>
-            <button class="btn-receta" data-receta="4">Receta 4</button>
-          </div>
-        </div>
-      </div>
-    </div>
+<button data-fotos="carne-desmechada1.jpg,carne-desmechada2.jpg,carne-desmechada3.jpg">
+Carne desmechada
+</button>
 
-    <div class="foto-container" id="foto-container"></div>
+<button data-fotos="picado.jpg">
+Pescado
+</button>
+
+</div>
+</div>
+</div>
+
+<div class="acordeon-item">
+
+  <div class="acordeon-titulo">
+      Agnolotis
   </div>
 
-  <!-- MODAL -->
-  <div class="modal" id="modal">
-    <div class="modal-content" id="modal-content"></div>
-  </div>
+<div class="acordeon-contenido">
 
-  <script>
-    const btnEspecialidades = document.getElementById("btn-especialidades");
-    const btnRecetas = document.getElementById("btn-recetas");
-    const acordeonEspecialidades = document.getElementById("acordeon-especialidades");
-    const acordeonRecetas = document.getElementById("acordeon-recetas");
+<div class="fila-botones">
 
-    btnEspecialidades.addEventListener("click", () => {
-      acordeonEspecialidades.style.display =
-        acordeonEspecialidades.style.display === "block" ? "none" : "block";
-      acordeonRecetas.style.display = "none";
-    });
+<button data-fotos="agnolotis-ricota-nuez.jpg">
+Ricota y nuez
+</button>
 
-    btnRecetas.addEventListener("click", () => {
-      acordeonRecetas.style.display =
-        acordeonRecetas.style.display === "block" ? "none" : "block";
-      acordeonEspecialidades.style.display = "none";
-    });
+</div>
+</div>
+</div>
 
-    document.querySelectorAll(".acordeon-titulo").forEach(titulo => {
-      titulo.addEventListener("click", () => {
-        const contenido = titulo.nextElementSibling;
+<div class="acordeon-item">
 
-        document.querySelectorAll(".acordeon-contenido").forEach(c => {
-          if (c !== contenido) c.style.maxHeight = null;
-        });
+<div class="acordeon-titulo">
+Panzottis
+</div>
 
-        contenido.style.maxHeight =
-          contenido.style.maxHeight ? null : contenido.scrollHeight + "px";
-      });
-    });
+<div class="acordeon-contenido">
 
-    const fotoContainer = document.getElementById("foto-container");
+<div class="fila-botones">
 
-    document.querySelectorAll("[data-fotos]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const fotos = btn.getAttribute("data-fotos").split(",");
-        let html = "";
+<button data-fotos="panzottis.jpg">
+Panzottis clásicos
+</button>
 
-        fotos.forEach(f => {
-          html += `<img src="img/${f.trim()}" alt="">`;
-        });
+</div>
+</div>
+</div>
 
-        html += `<button id="cerrar-foto">Cerrar fotos ✖</button>`;
-        fotoContainer.innerHTML = html;
+<div class="acordeon-item">
 
-        document.getElementById("cerrar-foto").addEventListener("click", () => {
-          fotoContainer.innerHTML = "";
-        });
-      });
-    });
+<div class="acordeon-titulo">
+Tallarines
+</div>
 
-    fotoContainer.addEventListener("click", (e) => {
-      if (e.target.tagName === "IMG") {
-        e.target.classList.toggle("activa");
-      }
-    });
+<div class="acordeon-contenido">
 
-    const modal = document.getElementById("modal");
-    const modalContent = document.getElementById("modal-content");
+<div class="fila-botones">
 
-    const recetas = {
-      1: `
-        <h3>Tallarines con Salsa Teriyaki</h3>
-        <ul>
-          <li>300 g de tallarines GA.ME.SI</li>
-          <li>4 cucharadas de salsa teriyaki</li>
-          <li>1 cucharada de miel</li>
-          <li>1 cucharada de aceite de sésamo</li>
-          <li>Ajo y jengibre</li>
-        </ul>
-        <p>Hervir los tallarines. Saltear la salsa teriyaki con miel, ajo y jengibre. Mezclar con los tallarines y servir.</p>
-      `,
-      2: `
-        <h3>Sorrentinos con Salsa Scarparo</h3>
-        <ul>
-          <li>Sorrentinos GA.ME.SI</li>
-          <li>Panceta, cebolla y ajo</li>
-          <li>Salsa de tomate</li>
-          <li>Crema de leche</li>
-        </ul>
-        <p>Dorar panceta, agregar cebolla y ajo. Sumar salsa de tomate y crema. Mezclar con los sorrentinos.</p>
-      `,
-      3: `
-        <h3>Panzottis con Pesto de Nuez</h3>
-        <ul>
-          <li>Panzottis GA.ME.SI</li>
-          <li>Albahaca</li>
-          <li>Nueces</li>
-          <li>Ajo</li>
-          <li>Aceite de oliva</li>
-        </ul>
-        <p>Procesar albahaca, nueces, ajo y aceite. Mezclar con los panzottis recién hervidos.</p>
-      `,
-      4: `
-        <h3>Agnolotis con Salsa Parisienne</h3>
-        <ul>
-          <li>Agnolotis GA.ME.SI</li>
-          <li>Jamón</li>
-          <li>Champiñones</li>
-          <li>Crema de leche</li>
-        </ul>
-        <p>Saltear jamón y champiñones. Agregar crema. Mezclar con los agnolotis y servir.</p>
-      `
-    };
+<button data-fotos="tallarines1.jpg,tallarines2.jpg,tallarines3.jpg">
+Tallarines frescos
+</button>
 
-    document.querySelectorAll(".btn-receta").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-receta");
-        modalContent.innerHTML = recetas[id] + `<button class="close-modal">Cerrar</button>`;
-        modal.style.display = "flex";
+</div>
+</div>
+</div>
 
-        document.querySelector(".close-modal").addEventListener("click", () => {
-          modal.style.display = "none";
-        });
-      });
-    });
+<div class="acordeon-item">
 
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.style.display = "none";
-    });
-  </script>
+<div class="acordeon-titulo">
+Malfatti
+</div>
+
+<div class="acordeon-contenido">
+
+<div class="fila-botones">
+
+<button data-fotos="malfatti-papas.jpg">
+Malfatti de papas
+</button>
+
+<button data-fotos="malfatti-verduras.jpg">
+Malfatti de verduras
+</button>
+
+</div>
+</div>
+</div>
+
+<div class="acordeon-item">
+
+<div class="acordeon-titulo">
+Extras Gourmet
+</div>
+
+<div class="acordeon-contenido">
+
+<div class="fila-botones">
+
+<button data-fotos="berenjenas1.jpg,berenjenas2.jpg,berenjenas3.jpg">
+No te pierdas de probar nuestras berenjenas al escabeche
+</button>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ACORDEON RECETAS -->
+
+<div class="acordeon" id="acordeon-recetas" style="display:none;">
+
+<div class="acordeon-item">
+
+<div class="acordeon-titulo">
+Recetas GA.ME.SI
+</div>
+
+<div class="acordeon-contenido">
+
+<div class="fila-botones">
+
+<button class="btn-receta" data-receta="1">
+Receta 1
+</button>
+
+<button class="btn-receta" data-receta="2">
+Receta 2
+</button>
+
+<button class="btn-receta" data-receta="3">
+Receta 3
+</button>
+
+<button class="btn-receta" data-receta="4">
+Receta 4
+</button>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="foto-container" id="foto-container"></div>
+
+</div>
+
+<button class="boton-musica" id="activar-sonido">
+🎵
+</button>
+
+<!-- POPUP PROMO -->
+
+<div id="promo-popup" class="promo-popup">
+
+    <div class="promo-box">
+
+        <div class="promo-deco">
+            🍝 ✨ 🍷
+        </div>
+
+        <h2>Date el gusto que merecés</h2>
+
+        <p class="promo-frase">
+            Pastas artesanales elaboradas con pasión.
+        </p>
+
+        <div class="promo-oferta">
+
+            <strong>PROMO ESPECIAL</strong>
+
+            <br><br>
+
+            1½ docena de Sorrentinos
+
+            <br>
+
+            Ideal para una persona
+
+            <br><br>
+
+            <span class="precio">
+                $4.900
+            </span>
+
+        </div>
+
+        <button id="cerrar-popup">
+            Cerrar
+        </button>
+
+    </div>
+
+</div>
+
+<div class="modal" id="modal">
+<div class="modal-content" id="modal-content"></div>
+</div>
+
+<script>
+
+const btnEspecialidades =
+document.getElementById("btn-especialidades");
+
+const btnRecetas =
+document.getElementById("btn-recetas");
+
+const acordeonEspecialidades =
+document.getElementById("acordeon-especialidades");
+
+const acordeonRecetas =
+document.getElementById("acordeon-recetas");
+
+btnEspecialidades.addEventListener("click", () => {
+
+acordeonEspecialidades.style.display =
+acordeonEspecialidades.style.display === "block"
+? "none"
+: "block";
+
+acordeonRecetas.style.display = "none";
+
+});
+
+btnRecetas.addEventListener("click", () => {
+
+acordeonRecetas.style.display =
+acordeonRecetas.style.display === "block"
+? "none"
+: "block";
+
+acordeonEspecialidades.style.display = "none";
+
+});
+
+document.querySelectorAll(".acordeon-titulo")
+.forEach(titulo => {
+
+titulo.addEventListener("click", () => {
+
+const contenido = titulo.nextElementSibling;
+
+document
+.querySelectorAll(".acordeon-contenido")
+.forEach(c => {
+
+if(c !== contenido){
+c.style.maxHeight = null;
+}
+
+});
+
+contenido.style.maxHeight =
+contenido.style.maxHeight
+? null
+: contenido.scrollHeight + "px";
+
+});
+
+});
+const fotoContainer =
+document.getElementById("foto-container");
+
+document
+.querySelectorAll("[data-fotos]")
+.forEach(btn => {
+
+btn.addEventListener("click", () => {
+
+const fotos =
+btn.getAttribute("data-fotos").split(",");
+
+let html = "";
+
+fotos.forEach(f => {
+
+html += `
+<img src="img/${f.trim()}" alt="">
+`;
+
+});
+
+html += `
+<button id="cerrar-foto">
+Cerrar fotos ✖
+</button>
+`;
+
+fotoContainer.innerHTML = html;
+
+document
+.getElementById("cerrar-foto")
+.addEventListener("click", () => {
+
+fotoContainer.innerHTML = "";
+
+});
+
+});
+
+});
+
+fotoContainer.addEventListener("click", e => {
+
+if(e.target.tagName === "IMG"){
+e.target.classList.toggle("activa");
+}
+
+});
+
+const modal =
+document.getElementById("modal");
+
+const modalContent =
+document.getElementById("modal-content");
+
+const recetas = {
+
+1: `
+<h3>Tallarines con Salsa Teriyaki</h3>
+
+<ul>
+<li>300 g de tallarines GA.ME.SI</li>
+<li>4 cucharadas de salsa teriyaki</li>
+<li>1 cucharada de miel</li>
+<li>1 cucharada de aceite de sésamo</li>
+<li>Ajo y jengibre</li>
+</ul>
+
+<p>
+Hervir los tallarines.
+Saltear la salsa teriyaki
+con miel, ajo y jengibre.
+Mezclar con los tallarines
+y servir.
+</p>
+`,
+
+2: `
+<h3>Sorrentinos con Salsa Scarparo</h3>
+
+<ul>
+<li>Sorrentinos GA.ME.SI</li>
+<li>Panceta, cebolla y ajo</li>
+<li>Salsa de tomate</li>
+<li>Crema de leche</li>
+</ul>
+
+<p>
+Dorar panceta,
+agregar cebolla y ajo,
+sumar salsa de tomate
+y crema.
+Mezclar con los sorrentinos.
+</p>
+`,
+
+3: `
+<h3>Panzottis con Pesto de Nuez</h3>
+
+<ul>
+<li>Panzottis GA.ME.SI</li>
+<li>Albahaca</li>
+<li>Nueces</li>
+<li>Ajo</li>
+<li>Aceite de oliva</li>
+</ul>
+
+<p>
+Procesar albahaca,
+nueces,
+ajo y aceite.
+Mezclar con los panzottis
+recién hervidos.
+</p>
+`,
+
+4: `
+<h3>Agnolotis con Salsa Parisienne</h3>
+
+<ul>
+<li>Agnolotis GA.ME.SI</li>
+<li>Jamón</li>
+<li>Champiñones</li>
+<li>Crema de leche</li>
+</ul>
+
+<p>
+Saltear jamón y champiñones.
+Agregar crema.
+Mezclar con los agnolotis.
+Servir caliente.
+</p>
+`
+};
+document
+.querySelectorAll(".btn-receta")
+.forEach(btn => {
+
+btn.addEventListener("click", () => {
+
+const id =
+btn.getAttribute("data-receta");
+
+modalContent.innerHTML =
+recetas[id] +
+`
+<button class="close-modal">
+Cerrar
+</button>
+`;
+
+modal.style.display = "flex";
+
+document
+.querySelector(".close-modal")
+.addEventListener("click", () => {
+
+modal.style.display = "none";
+
+});
+
+});
+
+});
+
+modal.addEventListener("click", e => {
+
+if(e.target === modal){
+
+modal.style.display = "none";
+
+}
+
+});
+
+/* ==========================
+   CONTROL DE MUSICA
+========================== */
+
+const musica =
+document.getElementById("musica-fondo");
+
+const botonMusica =
+document.getElementById("activar-sonido");
+
+if(botonMusica){
+
+botonMusica.addEventListener("click", () => {
+
+if(musica.muted){
+
+musica.muted = false;
+
+musica.play();
+
+botonMusica.innerHTML = "🔊";
+
+botonMusica.classList.add("activo");
+
+}else{
+
+musica.muted = true;
+
+botonMusica.innerHTML = "🎵";
+
+botonMusica.classList.remove("activo");
+
+}
+
+});
+
+}
+
+/* POPUP PROMOCION */
+
+const popupPromo =
+document.getElementById("promo-popup");
+
+const cerrarPopup =
+document.getElementById("cerrar-popup");
+
+cerrarPopup.addEventListener("click", () => {
+
+    popupPromo.style.display = "none";
+
+});
+
+</script>
 
 </body>
 </html>
+
 
