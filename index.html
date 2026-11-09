@@ -111,20 +111,20 @@ h2{
 .fila-botones{
     display:flex;
     flex-wrap:wrap;
-    gap:12px;
     justify-content:center;
+    gap:12px;
     padding:15px 0;
 }
 
 .fila-botones button{
-    padding:12px 18px;
-    border-radius:6px;
     background:rgba(255,255,255,.08);
     border:none;
     color:#f5f5f5;
-    font-size:18px;
     cursor:pointer;
     transition:.25s ease;
+    padding:12px 18px;
+    font-size:18px;
+    border-radius:6px;
 }
 
 .fila-botones button:hover{
@@ -132,6 +132,7 @@ h2{
     background:rgba(255,255,255,.20);
     color:#ffd27f;
 }
+
 .foto-container img{
     max-width:400px;
     width:100%;
@@ -217,16 +218,18 @@ h2{
     background:#4CAF50;
 }
 
-    @media (max-width:768px){
+/* ======== MOVILES CORREGIDO ======== */
+
+@media (max-width:768px){
 
     .btn,
     a.btn{
         display:block !important;
         width:100% !important;
-        font-size:32px !important;
-        padding:28px 30px !important;
-        margin:20px 0 !important;
-        border-radius:18px !important;
+        font-size:20px !important;
+        padding:14px 18px !important;
+        margin:10px 0 !important;
+        border-radius:12px !important;
         text-align:center !important;
     }
 
@@ -235,40 +238,34 @@ h2{
         flex-direction:row !important;
         flex-wrap:wrap !important;
         justify-content:center !important;
-        gap:15px !important;
+        gap:10px !important;
         width:100% !important;
     }
 
     .fila-botones button{
-        flex:1 1 calc(50% - 15px) !important;
-        min-width:140px !important;
-        font-size:24px !important;
-        padding:25px 15px !important;
-        border-radius:18px !important;
-        text-align:center !important;
-        font-weight:bold !important;
-    }
-
-    .acordeon-titulo{
-        font-size:30px !important;
-        padding:25px !important;
+        width:auto !important;
+        min-width:130px;
+        font-size:14px !important;
+        padding:10px 12px !important;
+        border-radius:10px !important;
+        margin:0 !important;
+        flex:0 0 auto;
     }
 
     .foto-container img{
         max-width:100%;
     }
 
-    h1{
-        font-size:58px !important;
+    .boton-musica{
+        width:55px;
+        height:55px;
+        font-size:22px;
+        bottom:15px;
+        right:15px;
     }
-
-    h2{
-        font-size:22px !important;
-    }
-
 }
 
-/* POPUP PROMOCION */
+/* ======== POPUP PROMO ======== */
 
 .promo-popup{
     position:fixed;
@@ -336,7 +333,6 @@ h2{
 }
 
 </style>
-
 </head>
 
 <body>
@@ -355,183 +351,204 @@ h2{
     Nuestras especialidades
 </button>
 
-<a class="btn"
-href="https://wa.me/5491132883615?text=Me%20gustaría%20encargarte%20..."
-target="_blank">
-Hacenos tu pedido por WhatsApp
+<a
+   class="btn"
+   href="https://wa.me/5491132883615?text=Me%20gustaría%20encargarte%20..."
+   target="_blank">
+    Hacenos tu pedido por WhatsApp
 </a>
 
 <button class="btn" id="btn-recetas">
     Aquí te dejamos algunas recetas GA.ME.SI
 </button>
 
-<div class="acordeon" id="acordeon-especialidades" style="display:none;">
+<div class="acordeon"
+     id="acordeon-especialidades"
+     style="display:none;">
 
-<div class="acordeon-item">
-<div class="acordeon-titulo">
-Sorrentinos
-</div>
+    <div class="acordeon-item">
 
-<div class="acordeon-contenido">
+        <div class="acordeon-titulo">
+            Sorrentinos
+        </div>
 
-<div class="fila-botones">
+        <div class="acordeon-contenido">
 
-<button data-fotos="muzzarela1.jpg,muzzarela2.jpg,muzzarela3.jpg">
-Muzzarela y jamón
-</button>
+            <div class="fila-botones">
 
-<button data-fotos="pollo-verdura1.jpg,pollo-verdura2.jpg,pollo-verdura3.jpg">
-Pollo y verdura
-</button>
+                <button data-fotos="muzzarela1.jpg,muzzarela2.jpg,muzzarela3.jpg">
+                    Muzzarela y jamón
+                </button>
 
-<button data-fotos="sorrentinos-verduras1.jpg,sorrentinos-verduras2.jpg">
-Verduras
-</button>
+                <button data-fotos="pollo-verdura1.jpg,pollo-verdura2.jpg,pollo-verdura3.jpg">
+                    Pollo y verdura
+                </button>
 
-<button data-fotos="carne-desmechada1.jpg,carne-desmechada2.jpg,carne-desmechada3.jpg">
-Carne desmechada
-</button>
+                <button data-fotos="sorrentinos-verduras1.jpg,sorrentinos-verduras2.jpg">
+                    Verduras
+                </button>
 
-<button data-fotos="picado.jpg">
-Pescado
-</button>
+                <button data-fotos="carne-desmechada1.jpg,carne-desmechada2.jpg,carne-desmechada3.jpg">
+                    Carne desmechada
+                </button>
 
-</div>
-</div>
-</div>
+                <button data-fotos="picado.jpg">
+                    Pescado
+                </button>
 
-<div class="acordeon-item">
+            </div>
 
-  <div class="acordeon-titulo">
-      Agnolotis
-  </div>
+        </div>
 
-<div class="acordeon-contenido">
+    </div>
 
-<div class="fila-botones">
+    <div class="acordeon-item">
 
-<button data-fotos="agnolotis-ricota-nuez.jpg">
-Ricota y nuez
-</button>
+        <div class="acordeon-titulo">
+            Agnolotis
+        </div>
 
-</div>
-</div>
-</div>
+        <div class="acordeon-contenido">
 
-<div class="acordeon-item">
+            <div class="fila-botones">
 
-<div class="acordeon-titulo">
-Panzottis
-</div>
+                <button data-fotos="agnolotis-ricota-nuez.jpg">
+                    Ricota y nuez
+                </button>
 
-<div class="acordeon-contenido">
+            </div>
 
-<div class="fila-botones">
+        </div>
 
-<button data-fotos="panzottis.jpg">
-Panzottis clásicos
-</button>
+    </div>
 
-</div>
-</div>
-</div>
+    <div class="acordeon-item">
 
-<div class="acordeon-item">
+        <div class="acordeon-titulo">
+            Panzottis
+        </div>
 
-<div class="acordeon-titulo">
-Tallarines
-</div>
+        <div class="acordeon-contenido">
 
-<div class="acordeon-contenido">
+            <div class="fila-botones">
 
-<div class="fila-botones">
+                <button data-fotos="panzottis.jpg">
+                    Panzottis clásicos
+                </button>
 
-<button data-fotos="tallarines1.jpg,tallarines2.jpg,tallarines3.jpg">
-Tallarines frescos
-</button>
+            </div>
 
-</div>
-</div>
-</div>
+        </div>
 
-<div class="acordeon-item">
+    </div>
 
-<div class="acordeon-titulo">
-Malfatti
-</div>
+    <div class="acordeon-item">
 
-<div class="acordeon-contenido">
+        <div class="acordeon-titulo">
+            Tallarines
+        </div>
 
-<div class="fila-botones">
+        <div class="acordeon-contenido">
 
-<button data-fotos="malfatti-papas.jpg">
-Malfatti de papas
-</button>
+            <div class="fila-botones">
 
-<button data-fotos="malfatti-verduras.jpg">
-Malfatti de verduras
-</button>
+                <button data-fotos="tallarines1.jpg,tallarines2.jpg,tallarines3.jpg">
+                    Tallarines frescos
+                </button>
 
-</div>
-</div>
-</div>
+            </div>
 
-<div class="acordeon-item">
+        </div>
 
-<div class="acordeon-titulo">
-Extras Gourmet
-</div>
+    </div>
 
-<div class="acordeon-contenido">
+    <div class="acordeon-item">
 
-<div class="fila-botones">
+        <div class="acordeon-titulo">
+            Malfatti
+        </div>
 
-<button data-fotos="berenjenas1.jpg,berenjenas2.jpg,berenjenas3.jpg">
-No te pierdas de probar nuestras berenjenas al escabeche
-</button>
+        <div class="acordeon-contenido">
 
-</div>
-</div>
-</div>
+            <div class="fila-botones">
+
+                <button data-fotos="malfatti-papas.jpg">
+                    Malfatti de papas
+                </button>
+
+                <button data-fotos="malfatti-verduras.jpg">
+                    Malfatti de verduras
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="acordeon-item">
+
+        <div class="acordeon-titulo">
+            Extras Gourmet
+        </div>
+
+        <div class="acordeon-contenido">
+
+            <div class="fila-botones">
+
+                <button data-fotos="berenjenas1.jpg,berenjenas2.jpg,berenjenas3.jpg">
+                    No te pierdas de probar nuestras berenjenas al escabeche
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
 <!-- ACORDEON RECETAS -->
 
-<div class="acordeon" id="acordeon-recetas" style="display:none;">
+<div class="acordeon"
+     id="acordeon-recetas"
+     style="display:none;">
 
-<div class="acordeon-item">
+    <div class="acordeon-item">
 
-<div class="acordeon-titulo">
-Recetas GA.ME.SI
+        <div class="acordeon-titulo">
+            Recetas GA.ME.SI
+        </div>
+
+        <div class="acordeon-contenido">
+
+            <div class="fila-botones">
+
+                <button class="btn-receta" data-receta="1">
+                    Receta 1
+                </button>
+
+                <button class="btn-receta" data-receta="2">
+                    Receta 2
+                </button>
+
+                <button class="btn-receta" data-receta="3">
+                    Receta 3
+                </button>
+
+                <button class="btn-receta" data-receta="4">
+                    Receta 4
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
-<div class="acordeon-contenido">
-
-<div class="fila-botones">
-
-<button class="btn-receta" data-receta="1">
-Receta 1
-</button>
-
-<button class="btn-receta" data-receta="2">
-Receta 2
-</button>
-
-<button class="btn-receta" data-receta="3">
-Receta 3
-</button>
-
-<button class="btn-receta" data-receta="4">
-Receta 4
-</button>
-
-</div>
-</div>
-</div>
-</div>
-
-<div class="foto-container" id="foto-container"></div>
+<div id="foto-container" class="foto-container"></div>
 
 </div>
 
@@ -539,7 +556,7 @@ Receta 4
 🎵
 </button>
 
-<!-- POPUP PROMO -->
+<!-- POPUP PROMOCION -->
 
 <div id="promo-popup" class="promo-popup">
 
@@ -549,7 +566,9 @@ Receta 4
             🍝 ✨ 🍷
         </div>
 
-        <h2>Date el gusto que merecés</h2>
+        <h2>
+            Date el gusto que merecés
+        </h2>
 
         <p class="promo-frase">
             Pastas artesanales elaboradas con pasión.
@@ -584,7 +603,7 @@ Receta 4
 </div>
 
 <div class="modal" id="modal">
-<div class="modal-content" id="modal-content"></div>
+    <div class="modal-content" id="modal-content"></div>
 </div>
 
 <script>
@@ -603,51 +622,54 @@ document.getElementById("acordeon-recetas");
 
 btnEspecialidades.addEventListener("click", () => {
 
-acordeonEspecialidades.style.display =
-acordeonEspecialidades.style.display === "block"
-? "none"
-: "block";
+    acordeonEspecialidades.style.display =
+    acordeonEspecialidades.style.display === "block"
+    ? "none"
+    : "block";
 
-acordeonRecetas.style.display = "none";
+    acordeonRecetas.style.display = "none";
 
 });
 
 btnRecetas.addEventListener("click", () => {
 
-acordeonRecetas.style.display =
-acordeonRecetas.style.display === "block"
-? "none"
-: "block";
+    acordeonRecetas.style.display =
+    acordeonRecetas.style.display === "block"
+    ? "none"
+    : "block";
 
-acordeonEspecialidades.style.display = "none";
+    acordeonEspecialidades.style.display = "none";
 
 });
-
-document.querySelectorAll(".acordeon-titulo")
-.forEach(titulo => {
-
-titulo.addEventListener("click", () => {
-
-const contenido = titulo.nextElementSibling;
 
 document
-.querySelectorAll(".acordeon-contenido")
-.forEach(c => {
+.querySelectorAll(".acordeon-titulo")
+.forEach(titulo => {
 
-if(c !== contenido){
-c.style.maxHeight = null;
-}
+    titulo.addEventListener("click", () => {
+
+        const contenido =
+        titulo.nextElementSibling;
+
+        document
+        .querySelectorAll(".acordeon-contenido")
+        .forEach(c => {
+
+            if(c !== contenido){
+                c.style.maxHeight = null;
+            }
+
+        });
+
+        contenido.style.maxHeight =
+        contenido.style.maxHeight
+        ? null
+        : contenido.scrollHeight + "px";
+
+    });
 
 });
 
-contenido.style.maxHeight =
-contenido.style.maxHeight
-? null
-: contenido.scrollHeight + "px";
-
-});
-
-});
 const fotoContainer =
 document.getElementById("foto-container");
 
@@ -655,46 +677,46 @@ document
 .querySelectorAll("[data-fotos]")
 .forEach(btn => {
 
-btn.addEventListener("click", () => {
+    btn.addEventListener("click", () => {
 
-const fotos =
-btn.getAttribute("data-fotos").split(",");
+        const fotos =
+        btn.getAttribute("data-fotos").split(",");
 
-let html = "";
+        let html = "";
 
-fotos.forEach(f => {
+        fotos.forEach(f => {
 
-html += `
-<img src="img/${f.trim()}" alt="">
-`;
+            html += `
+                <img src="img/${f.trim()}" alt="">
+            `;
 
-});
+        });
 
-html += `
-<button id="cerrar-foto">
-Cerrar fotos ✖
-</button>
-`;
+        html += `
+            <button id="cerrar-foto">
+                Cerrar fotos ✖
+            </button>
+        `;
 
-fotoContainer.innerHTML = html;
+        fotoContainer.innerHTML = html;
 
-document
-.getElementById("cerrar-foto")
-.addEventListener("click", () => {
+        document
+        .getElementById("cerrar-foto")
+        .addEventListener("click", () => {
 
-fotoContainer.innerHTML = "";
+            fotoContainer.innerHTML = "";
 
-});
+        });
 
-});
+    });
 
 });
 
 fotoContainer.addEventListener("click", e => {
 
-if(e.target.tagName === "IMG"){
-e.target.classList.toggle("activa");
-}
+    if(e.target.tagName === "IMG"){
+        e.target.classList.toggle("activa");
+    }
 
 });
 
@@ -782,51 +804,51 @@ Mezclar con los agnolotis.
 Servir caliente.
 </p>
 `
+
 };
+
 document
 .querySelectorAll(".btn-receta")
 .forEach(btn => {
 
-btn.addEventListener("click", () => {
+    btn.addEventListener("click", () => {
 
-const id =
-btn.getAttribute("data-receta");
+        const id =
+        btn.getAttribute("data-receta");
 
-modalContent.innerHTML =
-recetas[id] +
-`
-<button class="close-modal">
-Cerrar
-</button>
-`;
+        modalContent.innerHTML =
+        recetas[id] +
+        `
+        <button class="close-modal">
+            Cerrar
+        </button>
+        `;
 
-modal.style.display = "flex";
+        modal.style.display = "flex";
 
-document
-.querySelector(".close-modal")
-.addEventListener("click", () => {
+        document
+        .querySelector(".close-modal")
+        .addEventListener("click", () => {
 
-modal.style.display = "none";
+            modal.style.display = "none";
 
-});
+        });
 
-});
+    });
 
 });
 
 modal.addEventListener("click", e => {
 
-if(e.target === modal){
-
-modal.style.display = "none";
-
-}
+    if(e.target === modal){
+        modal.style.display = "none";
+    }
 
 });
 
-/* ==========================
+/* =======================
    CONTROL DE MUSICA
-========================== */
+======================= */
 
 const musica =
 document.getElementById("musica-fondo");
@@ -836,29 +858,26 @@ document.getElementById("activar-sonido");
 
 if(botonMusica){
 
-botonMusica.addEventListener("click", () => {
+    botonMusica.addEventListener("click", () => {
 
-if(musica.muted){
+        if(musica.muted){
 
-musica.muted = false;
+            musica.muted = false;
+            musica.play();
 
-musica.play();
+            botonMusica.innerHTML = "🔊";
+            botonMusica.classList.add("activo");
 
-botonMusica.innerHTML = "🔊";
+        }else{
 
-botonMusica.classList.add("activo");
+            musica.muted = true;
 
-}else{
+            botonMusica.innerHTML = "🎵";
+            botonMusica.classList.remove("activo");
 
-musica.muted = true;
+        }
 
-botonMusica.innerHTML = "🎵";
-
-botonMusica.classList.remove("activo");
-
-}
-
-});
+    });
 
 }
 
